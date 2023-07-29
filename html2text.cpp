@@ -183,6 +183,8 @@ main(int argc, char **argv)
 	const char *const *input_files;
 	int number_of_input_files;
 
+	string rcfile_string;
+
 	if (i >= argc) {
 		static const char *const x = "-";
 		input_files = &x;
@@ -195,8 +197,10 @@ main(int argc, char **argv)
 	{
 		std::ifstream ifs;
 
-		if (rcfile == NULL && home != NULL)
-			rcfile = (string(home) + "/.html2textrc").c_str();
+		if (rcfile == NULL && home != NULL) {
+			rcfile_string = string(home) + "/.html2textrc";
+			rcfile = rcfile_string.c_str();
+		}
 		if (rcfile != NULL)
 			ifs.open(rcfile);
 		if (rcfile == NULL || !ifs.rdbuf()->is_open())
