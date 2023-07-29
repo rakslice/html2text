@@ -495,7 +495,7 @@ HTMLControl::yylex2(html2text::HTMLParser::semantic_type *value_return,
 						list<TagAttribute>::const_iterator j;
 						for (j = ta.begin(); j != ta.end(); ++j) {
 							std::cerr << " " << (*j).first <<
-								"=\"" << (*j).second.c_str() << "\"";
+								"=\"" << (*j).second.tostring() << "\"";
 						}
 					}
 					std::cerr << ">\"" << std::endl;
@@ -581,7 +581,7 @@ HTMLControl::yylex2(html2text::HTMLParser::semantic_type *value_return,
 			}
 
 			if (debug_scanner)
-				std::cerr << "Scanned PCDATA \"" << s->c_str() << "\""
+				std::cerr << "Scanned PCDATA \"" << s->tostring() << "\""
 					<< std::endl;
 
 			return HTMLParser_token::PCDATA;

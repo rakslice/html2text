@@ -887,12 +887,12 @@ Form::format(Area::size_type w, int halign) const
 Line *
 Input::line_format() const
 {
-	string type = get_attribute(attributes.get(), "TYPE", "TEXT").c_str();
-	string name = get_attribute(attributes.get(), "NAME", "").c_str();
-	string value = get_attribute(attributes.get(), "VALUE", "").c_str();
+	string type = get_attribute(attributes.get(), "TYPE", "TEXT").tostring();
+	string name = get_attribute(attributes.get(), "NAME", "").tostring();
+	string value = get_attribute(attributes.get(), "VALUE", "").tostring();
 	bool checked = get_attribute(attributes.get(), "CHECKED", "0") != "0";
 	int size = get_attribute(attributes.get(), "SIZE", -1);
-	string src = get_attribute(attributes.get(), "SRC", "").c_str();
+	string src = get_attribute(attributes.get(), "SRC", "").tostring();
 
 	string res;
 	if (cmp_nocase(type, "TEXT") == 0) {

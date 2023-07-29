@@ -159,24 +159,28 @@ class istr {
 		{
 			return !(*this == inp);
 		}
-		const char *c_str(void) const
-		{
-			std::unique_ptr<string> s(new std::string);
 
-			for (int c : elems) {
-				*s += c & 0xFF;
-				if ((c >> 7) & 1) {
-					unsigned int d = c;
-					unsigned char point = 1;
-					while ((c >> (7 - point++)) & 1) {
-						d >>= 8;
-						*s += d & 0xFF;
-					};
-				}
-			}
+                void write(std::string & s) const
+                {
+                        for (int c : elems) {
+                                s += c & 0xFF;
+                                if ((c >> 7) & 1) {
+                                        unsigned int d = c;
+                                        unsigned char point = 1;
+                                        while ((c >> (7 - point++)) & 1) {
+                                                d >>= 8;
+                                                s += d & 0xFF;
+                                        };
+                                }
+                        }
+                }
 
-			return s->c_str();
-		}
+                std::string tostring(void) const
+                {
+                        std::string s;
+                        write(s);
+                        return s;
+                }
 
 	private:
 		std::vector<int> elems;

@@ -81,7 +81,7 @@ get_attribute(
 		list<TagAttribute>::const_iterator i;
 		for (i = as->begin(); i != as->end(); ++i) {
 			if (cmp_nocase((*i).first, name) == 0)
-				return atoi((*i).second.c_str());
+				return atoi((*i).second.tostring().c_str());
 		}
 	}
 	return dflt;
@@ -107,7 +107,7 @@ get_attribute(
 				va_list va;
 				va_start(va, v1);
 				for (;;) {
-					if (cmp_nocase(s, (*i).second.c_str()) == 0)
+					if (cmp_nocase(s, (*i).second.tostring().c_str()) == 0)
 						break;
 					s = va_arg(va, const char *);
 					if (!s) {
@@ -139,7 +139,7 @@ get_attribute(
 		list<TagAttribute>::const_iterator i;
 		for (i = as->begin(); i != as->end(); ++i) {
 			if (cmp_nocase((*i).first, name) == 0) {
-				dflt1 = (*i).second.c_str();
+				dflt1 = (*i).second.tostring().c_str();
 				break;
 			}
 		}
